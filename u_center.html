@@ -80,6 +80,7 @@
 				maskp.show();
 				document.querySelector('.photoClip').innerHTML = '<iframe scrolling="none" allowtransparency="true"  name="iframe2" class="" frameborder="0" src="./clip/index.html" style="width:100%;height:380px"></iframe>'
 				document.querySelector('.photoClip').style.display = 'block';
+				//调用窗口内的裁剪方法
 				mui.later(function(){
 					iframe2.window.starts();
 				},300)
