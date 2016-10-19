@@ -172,8 +172,8 @@ gulp.task('cdn', function() {
         .pipe(cdn({
             dir: 'dist/dev',
             root: {
-                js:'http://n.7k7kimg.cn/uploads/cdn/gw_lycq/',
-                css:'http://n.7k7kimg.cn/uploads/cdn/gw_lycq/'
+                js:'http://n.****.cn/uploads/cdn/dayuPhone/',
+                css:'http://n.****.cn/uploads/cdn/dayuPhone/'
             }
         }))
         .pipe(gulp.dest('dist/dev'));
