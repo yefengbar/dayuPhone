@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>dyPhone</title>
+		<link href="css/mui.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/index.css"/>
+		<style type="text/css">
+			.uc_pad {padding:50px}
+			.ucenter .logo {display: block;margin: 0 auto;}
+			.mui-input-row .mui-btn {width:100%}
+			#pcode {line-height: 24px;margin-left:10px}
+			.u_reg_form {padding-top:20px}
+			.u_reg_form .btns {padding-top:30px}
+			.mui-bar-nav .txtIcon {font-size: 14px;line-height: 24px;color:#333}
+			.mui-checkbox.mui-left label {
+				padding:10px 10px 10px 28px;
+				color:#999
+			}
+			.mui-checkbox.mui-left input[type='checkbox'] {
+			    left: 0px;
+			}
+			.mui-radio input[type='radio']:before, .mui-checkbox input[type='checkbox']:before {font-size: 25px;}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-menu mui-icon mui-pull-right txtIcon" href="u_reg.html">注册</a>
+			<a class="mui-action-back mui-icon mui-icon-back mui-pull-left"></a>
+			<h1 class="mui-title">忘记密码</h1>
+		</header>
+		<div class="mui-content ucenter">
+			<div class="uc_pad">
+				
+				<div class="u_reg_form">
+					<ul class="mui-table-view mui-table-view-radio">
+						<li class="mui-table-view-cell mui-selected" rel="0">
+							<a class="mui-navigate-right">
+								手机
+							</a>
+						</li>
+						<li class="mui-table-view-cell" rel="1">
+							<a class="mui-navigate-right">
+								邮箱
+							</a>
+						</li>
+					</ul>
+					<div class="mui-content-padded">
+						<p id="info"></p>
+					</div>
+					<div class="mui-input-row">
+						<input type="text" id="u_name" value="" placeholder="请输入绑定的手机" />
+					</div>
+					
+					<div class="mui-input-row btns">
+						<!--<input type="hidden" name="type" id="type" value="0" />-->
+						<button type="button" class="mui-btn mui-btn-primary mui-btn-block">下一步</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<script src="js/mui.min.js"></script>
+		<script>
+			mui.init();
+			//radio
+			var info = document.getElementById("info");
+			document.querySelector('.mui-table-view.mui-table-view-radio').addEventListener('selected',function(e){
+				info.innerHTML = "更改找回方式为："+e.detail.el.innerText;
+				document.querySelector('#u_name').setAttribute('placeholder',"请输入绑定的"+e.detail.el.innerText);
+				
+			});
+			//nav link
+			document.querySelector('.mui-bar-nav .txtIcon').addEventListener('tap', function(){
+				var url = this.getAttribute('href');        
+				mui.openWindow({
+					url:url
+				});
+			});
+			//next step
+			mui('.btns').on('tap', 'button', function(e) {
+				var type = document.querySelector('.mui-table-view-radio .mui-selected').getAttribute('rel'),parme = document.querySelector('#u_name').value;
+				if(type == 0){
+					if(/^(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/.test(parme)){
+						mui.openWindow({
+							url:'./u_fpass_phone.html?type='+type+'&parme='+parme
+						});
+					}else{
+						mui.toast('请正确填写手机号')
+					}
+				}else{
+					if(/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/.test(parme)){
+						mui.openWindow({
+							url:'./u_fpass_phone.html?type='+type+'&parme='+parme
+						});
+					}else{
+						mui.toast('请正确填写邮箱地址')
+					}
+				}
+			});
+		</script>
+	</body>
+
+</html>

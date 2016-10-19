@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>dyPhone</title>
+		<link href="css/mui.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/index.css"/>
+		<link href="css/mui.picker.css" rel="stylesheet" />
+		<link href="css/mui.poppicker.css" rel="stylesheet" />
+		<style type="text/css">
+			.uc_pad {padding:40px 20px 20px 20px}
+			.ucenter td {vertical-align: top;color:#999;font-size: 16px;}
+			.ucenter td .tab_left {line-height: 35px;color:#333;font-size: 20px;}
+			.ucenter table {
+			    border-spacing: 5px;
+			    border-collapse: initial;
+			}
+			.ucenter td textarea {margin-bottom: 5px;}
+			.mui-input-row label {padding: 10px 15px 5px 15px}
+			.mui-radio.mui-left input[type='radio'] {left: -1px;}
+			.mui-radio.mui-left label {padding-left: 35px;padding-right: 35px;}
+			.ucenter .mui-radio {margin-top:-10px}
+			.ucenter .btns {padding:20px 5px 0 5px}	
+			.mui-input-row .mui-btn {width:100%;}		
+			#showCityPicker3{
+				font-size: 16px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<!--<a class="mui-action-menu mui-icon mui-pull-right txtIcon" href="u_reg.html">注册</a>-->
+			<a class="mui-action-back mui-icon mui-icon-back mui-pull-left"></a>
+			<h1 class="mui-title">个人资料</h1>
+		</header>
+		<div class="mui-content ucenter">
+			<div class="uc_pad">
+				<table border="0" cellspacing="0" cellpadding="5">
+					<tr><td width="65"><span class="tab_left">姓&nbsp;名</span></td><td><input type="text" id="name" value="" /></td></tr>
+					<tr><td><span class="tab_left" style="line-height: 25px;">性&nbsp;别</span></td><td style="padding-bottom: 10px;">
+						<table border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<td>
+									<div class="mui-input-row mui-radio mui-left">
+										<label>男</label>
+										<input name="radio1" type="radio" checked="checked" rel="1">
+									</div>
+								</td>
+								<td>
+									<div class="mui-input-row mui-radio mui-left">
+										<label>女</label>
+										<input name="radio1" type="radio" rel="2">
+									</div>
+								</td>
+							</tr>
+						</table>
+					</td></tr>
+					<tr>
+						<td><span class="tab_left">地&nbsp;区</span></td>
+						<td>
+							<!--<button id='showCityPicker3' class="mui-btn" type='button'>三级联动示例 ...</button><br>-->
+							<input type="text" id="showCityPicker3" class="icon-tree-arrow-open mui-icon1" value="请选择 省/市/区县" readonly="readonly" />
+							<!--<input type="text" id="name" value="" placeholder="填写详细地址" />-->
+							<textarea id="fullAdress" name="fullAdress" rows="3" cols="20" placeholder="填写详细地址" ></textarea>
+						</td>
+					</tr>
+					<tr><td><span class="tab_left">Ｑ&nbsp;Ｑ</span></td><td><input type="text" id="qq" value="" /></td></tr>
+					<tr><td><span class="tab_left">&nbsp;</span></td><td></td></tr>
+					<tr><td><span class="tab_left">&nbsp;</span></td><td><div class="mui-input-row btns">
+					<button type="button" class="mui-btn mui-btn-primary mui-btn-block">确认</button>
+				</div></td></tr>
+				</table>
+				
+			</div>
+		</div>
+		
+		<script src="js/mui.min.js"></script>
+		<script src="js/mui.picker.js"></script>
+		<script src="js/mui.poppicker.js"></script>
+		<script src="js/city.data-3.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			mui.init();
+			var cityPicker3 = new mui.PopPicker({layer: 3});
+			cityPicker3.setData(cityData3);
+			var showCityPickerButton = document.getElementById('showCityPicker3');
+			showCityPickerButton.addEventListener('tap', function(event) {
+				cityPicker3.show(function(items) {
+					showCityPicker3.value = (items[0] || {}).text + "-" + (items[1] || {}).text + "-" + (items[2] || {}).text;
+					//返回 false 可以阻止选择框的关闭
+					//return false;
+				});
+			}, false);
+			//tijiao
+			var sex = 1;
+			document.querySelector('.mui-radio').addEventListener('selected',function(e){
+				sex = this.getAttribute('rel');
+			});
+			document.querySelector('.btns .mui-btn').addEventListener('tap', function(){
+				upInfo()
+			});
+			function upInfo(){
+				var url = '/index.php?s=/Home/User/upinfo.html',
+					name = document.querySelector('#name').value,
+					ssq = document.querySelector('#showCityPicker3').value.split("-"),
+					a1 = ssq[0],
+					a2 = ssq[1],
+					a3 = ssq[2],
+					aa = document.querySelector('#fullAdress').value,
+					qq = document.querySelector('#qq').value;
+				mui.post(url, {uf_name:name,sex:sex,sheng:a1,shi:a2,xian:a3,uf_address:aa,uf_qq:qq}, success, "json");
+				return false;
+				
+				function success(data){
+					
+					if(data.status){
+						mui.toast('提交成功！',{time:3000});
+					} else {
+						mui.toast(data.info);
+					}
+				}				
+			}
+		</script>
+	</body>
+
+</html>

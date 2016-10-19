@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>dyPhone</title>
+		<link href="css/mui.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/index.css"/>
+		<style type="text/css">
+			.uc_pad {padding:50px}
+			.ucenter .logo {display: block;margin: 0 auto;}
+			.mui-input-row .mui-btn {width:100%}
+			#pcode {line-height: 24px;margin-left:10px}
+			.u_reg_form {padding-top:20px}
+			.u_reg_form .btns {padding-top:30px}
+			.mui-bar-nav .txtIcon {font-size: 14px;line-height: 24px;color:#333}
+			.mui-checkbox.mui-left label {
+				padding:10px 10px 10px 28px;
+				color:#999
+			}
+			.mui-checkbox.mui-left input[type='checkbox'] {
+			    left: 0px;
+			}
+			.mui-radio input[type='radio']:before, .mui-checkbox input[type='checkbox']:before {font-size: 25px;}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-menu mui-icon mui-pull-right txtIcon" href="u_reg.html">注册</a>
+			<a class="mui-action-back mui-icon mui-icon-back mui-pull-left"></a>
+			<h1 class="mui-title">登录</h1>
+		</header>
+		<div class="mui-content ucenter">
+			<div class="uc_pad">
+				<a href=""><img src="img/logo.png" width="50%" class="logo" /></a>
+				<div class="u_reg_form">
+					<div class="mui-input-row">
+						<input type="text" id="name" value="" placeholder="用户名" />
+					</div>
+					<div class="mui-input-row mui-password">
+						<input type="password" id="pass" class="mui-input-password" placeholder="密    码" />
+					</div>
+					<div class="mui-input-row mui-password">
+						<table width="100%" border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<td>
+									<div class="mui-input-row mui-checkbox mui-left">
+									  <label>自动登录</label>
+									  <input name="checkbox1" value="Item 1" type="checkbox" checked="checked">
+									</div>
+								</td>
+								<td valign="middle" align="right"><a href="./u_fpass.html" style="color:#999">忘记密码?</a></td>
+							</tr>
+						</table>
+					</div>
+					<div class="mui-input-row btns">
+						<button type="button" class="mui-btn mui-btn-primary mui-btn-block">登录</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<script src="js/mui.min.js"></script>
+		<script>
+			mui.init();
+			document.querySelector('.mui-bar-nav .txtIcon').addEventListener('tap', function(){
+				var url = this.getAttribute('href');        
+				mui.openWindow({
+					url:url
+				});
+			});
+			//login
+			document.querySelector('.btns .mui-btn').addEventListener('tap', function(){
+				login()
+			});
+			function login() {
+				var n = document.querySelector('#name').value,
+					p = document.querySelector('#pass').value;
+				if (n && /^[a-zA-Z0-9_.@]{4,20}$/.test(n)) {
+					if (p && /^[\s\S]{6,20}$/.test(p)) {
+						
+						mui.post('/index.php?s=/Home/User/login.html',{
+							username:n,
+							password:p
+						},function(data){
+							//服务器返回响应，根据响应结果，分析是否登录成功；
+							if(data.status){
+							    mui.toast('登陆成功！');
+							    mui.later(function(){location.href = './index.html'}, 2000)
+							    
+							} else {
+								mui.toast(data.info);	
+							}
+						},'json');
+						
+					} else {
+						mui.toast('密码不正确！')
+					}
+				} else {
+					mui.toast('用户名不正确！')
+				}
+			};
+		</script>
+	</body>
+
+</html>

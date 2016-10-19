@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>dyPhone</title>
+		<link href="css/mui.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/index.css"/>
+		<style type="text/css">
+			.uc_pad {padding:50px}
+			.uc_photo {width:120px;height:120px;margin:0 auto;border-radius: 60px;overflow: hidden;position: relative;}
+			.uc_photo a,.uc_photo span {display: block;width: 100%;height: 25px;position: absolute;left: 0;bottom: 0;}
+			.uc_photo a {font-size: 14px;color:#333;line-height: 25px;text-align: center;font-weight: bold;z-index: 6;}
+			.uc_photo span {background: #fff;-webkit-opacity: 0.5;opacity: 0.5;z-index: 5;}
+			.ucenter ul {padding:80px 0 0 0}
+			.ucenter ul li {display: block;width:80%;height:50px;margin:0 auto;line-height: 50px;font-size: 20px;font-weight: bold;color:#333;text-align: center;}
+			.ucenter ul li a {color:#333}
+			.uc_name {font-size: 18px;line-height: 200%;text-align: center;color: #999;}
+			.photoClip {display:none;position: fixed;width: 100%;height:380px;top:50%;margin-top:-190px;z-index: 1000;}
+			
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<!--<a class="mui-action-menu mui-icon mui-pull-right txtIcon" href="u_reg.html">注册</a>-->
+			<a class="mui-action-back mui-icon mui-icon-back mui-pull-left"></a>
+			<h1 class="mui-title">用户中心</h1>
+		</header>
+		<div class="mui-content ucenter">
+			<div class="uc_pad">
+				<div class="uc_photo">
+					<img src="img/index/video_0.jpg" width="120" height="120"/>
+					<a href="#">修改头像</a>
+					<span></span>
+				</div>
+				<div class="uc_name">
+					{$info.nickname}
+				</div>
+				<ul>
+					<li class="u_grzl"><a href="./u_info.html"><span class="mui-icon1 icon-warning"></span>&nbsp;&nbsp;个人资料</a></li>
+					<li class="u_yhbd"><a href="./u_bind.html"><span class="mui-icon1 icon-user"></span>&nbsp;&nbsp;用户绑定</a></li>
+					<li class="u_xgmm"><a href="./u_upass.html"><span class="mui-icon1 icon-link"></span>&nbsp;&nbsp;修改密码</a></li>
+				</ul>
+			</div>
+		</div>
+		<!--修改头像-->
+		<div id="sheet1" class="mui-popover mui-popover-bottom mui-popover-action ">
+		    <!-- 可选择菜单 -->
+		    <ul class="mui-table-view">
+		      <li class="mui-table-view-cell">
+		        <a href="#" rel="photo">手机相册</a>
+		        <input type="file" class="file" name="photo" id="photo" accept="image/*" value="" style="display:none" />
+		      </li>
+		      <li class="mui-table-view-cell">
+		        <a href="#" rel="camra">拍照</a>
+		        <input type="file" class="file" name="camra" id="camra" accept="image/*;capture=camera" value="" style="display:none" />
+		      </li>
+		    </ul>
+		    <!-- 取消菜单 -->
+		    <ul class="mui-table-view">
+		      <li class="mui-table-view-cell">
+		        <a href="#sheet1" style="color:#ef0000">取消</a>
+		      </li>
+		    </ul>
+		</div>
+		<div class="photoClip"></div>
+		<script src="js/mui.min.js"></script>
+		<script>
+			mui.init();
+			//nav link
+			document.querySelector('.uc_photo a').addEventListener('tap', function(){
+				mui('#sheet1').popover('toggle');
+			});
+			var maskp = mui.createMask(cl_photo);
+			mui('.mui-popover .mui-table-view-cell').on('tap','a',function(){
+				var type = this.getAttribute('rel');
+//				document.querySelector('#'+type).click();
+				mui('#sheet1').popover('toggle');
+				maskp.show();
+				document.querySelector('.photoClip').innerHTML = '<iframe scrolling="none" allowtransparency="true"  name="iframe2" class="" frameborder="0" src="./clip/index.html" style="width:100%;height:380px"></iframe>'
+				document.querySelector('.photoClip').style.display = 'block';
+				mui.later(function(){
+					iframe2.window.starts();
+				},300)
+				
+			});
+			function cl_photo(){
+				document.querySelector('.photoClip').style.display = 'none';
+				document.querySelector('.photoClip').innerHTML = ''
+			}
+			function cl_photom(){
+				document.querySelector('.photoClip').style.display = 'none';
+				maskp.close();
+			}
+			function callbacks(url){
+				cl_photo();
+				maskp.close();
+				document.querySelector('.uc_photo img').setAttribute('src',url);
+				mui.toast('头像修改成功！')
+			}
+		</script>
+	</body>
+
+</html>

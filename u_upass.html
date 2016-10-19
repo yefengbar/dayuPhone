@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>dyPhone</title>
+		<link href="css/mui.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/index.css"/>
+		<style type="text/css">
+			.uc_pad {padding:50px}
+			.ucenter .logo {display: block;margin: 0 auto;}
+			.mui-input-row .mui-btn {width:100%}
+			#pcode {line-height: 24px;margin-left:10px}
+			.u_reg_form {padding-top:20px}
+			.u_reg_form .btns {padding-top:30px}
+			.mui-bar-nav .txtIcon {font-size: 14px;line-height: 24px;color:#333}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<!--<a class="mui-action-menu mui-icon mui-pull-right txtIcon" href="u_log.html">登录</a>-->
+			<a class="mui-action-back mui-icon mui-icon-back mui-pull-left"></a>
+			<h1 class="mui-title">修改密码</h1>
+		</header>
+		<div class="mui-content ucenter">
+			<div class="uc_pad">
+				<a href=""><img src="img/logo.png" width="50%" class="logo" /></a>
+				<div class="u_reg_form">
+					<div class="mui-input-row mui-password">
+						<input type="password" id="rname" class="mui-input-password" placeholder="原密码" />
+					</div>
+					<div class="mui-input-row mui-password">
+						<input type="password" id="rpass" class="mui-input-password" placeholder="新密码" />
+					</div>
+					<div class="mui-input-row mui-password">
+						<input type="password" id="repass" class="mui-input-password" placeholder="确认密码" />
+					</div>
+					<div class="mui-input-row btns">
+						<button type="button" class="mui-btn mui-btn-primary mui-btn-block">确认</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<script src="js/mui.min.js"></script>
+		<script>
+			mui.init();
+			document.querySelector('.btns .mui-btn').addEventListener('tap', function(){
+				register()
+			});
+			function register() {
+				var rn = document.querySelector('#rname').value,
+					rp = document.querySelector('#rpass').value,
+					rep = document.querySelector('#repass').value;
+				if (rn && /^[\s\S]{6,20}$/.test(rn)) {
+					if (rp && /^[\s\S]{6,20}$/.test(rp)) {
+						if (rep === rp) {
+							mui.post('/index.php?s=/Home/User/profile.html',{
+								old:rn,
+								password:rp,
+								repassword:rep
+							},function(data){
+								//服务器返回响应，根据响应结果，分析是否登录成功；
+								if(data.status){
+								    mui.toast('修改成功！请重新登录');
+								    mui.later(function(){location.href = './u_log.html'}, 2000)
+								    
+								} else {
+									mui.toast(data.info);	
+								}
+							},'json');
+							
+						} else {
+							 mui.toast('两次密码不一致！');
+						}
+					} else {
+						 mui.toast('新密码格式不正确！');
+					}
+				} else {
+					 mui.toast('原密码格式不正确！');
+				}
+			}
+		</script>
+	</body>
+
+</html>

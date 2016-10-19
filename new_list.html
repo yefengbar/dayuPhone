@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>dyPhone</title>
+		<link href="css/mui.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/index.css"/>
+		<style type="text/css">
+			.news_list .mui-table-view .mui-table-view-cell:after {height: 1px;background: #ccc;left: 0;}
+			.news_list .mui-table-view .mui-table-view-cell p {font-size: 16px;color:#666}
+			.news_list .mui-table-view .mui-table-view-cell span {font-size: 14px;color:#999}
+			.news_list h4 {display:block;padding:20px 0 10px 15px;border-bottom: 1px solid #ccc;float: left;}
+			
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" id="headers">
+			<!--<a id="icon-menu" class="mui-action-menu mui-icon mui-icon-bars mui-pull-right"></a>-->
+			<a class="mui-action-back mui-icon mui-icon-back mui-pull-left"></a>
+			<h1 class="mui-title">新闻中心</h1>
+		</header>
+		<div id="pullrefresh" class="mui-scroll-wrapper news_list" style="top:44px;bottom:0">
+			<div class="mui-scroll">
+			<!--这里放置真实显示的DOM内容-->
+				<h4>新闻中心</h4>
+				<div style="clear:both"></div>
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell"><a href="new_show.html"><p class="mui-ellipsis-2">我是新闻标题我是新闻标我是新闻标题我是新闻标</p><span>2016-07-27</span></a></li>
+					<li class="mui-table-view-cell"><a href="new_show.html"><p class="mui-ellipsis-2">我是新闻标题我是新闻标我是新题我是新闻标我是新闻标题我是新闻标</p><span>2016-07-27</span></a></li>
+					<li class="mui-table-view-cell"><a href="new_show.html"><p class="mui-ellipsis-2">我是新闻标题我是新闻标我是新闻标题我是新闻标</p><span>2016-07-27</span></a></li>
+					<li class="mui-table-view-cell"><a href="new_show.html"><p class="mui-ellipsis-2">我是新闻标题我是新闻标我是新闻标题我是新闻标</p><span>2016-07-27</span></a></li>
+					<li class="mui-table-view-cell"><a href="new_show.html"><p class="mui-ellipsis-2">我是新闻标题我是新闻标我是新闻标题我是新闻标</p><span>2016-07-27</span></a></li>
+					<li class="mui-table-view-cell"><a href="new_show.html"><p class="mui-ellipsis-2">我是新闻标题我是新闻标我是新闻标题我是新闻标</p><span>2016-07-27</span></a></li>
+					<li class="mui-table-view-cell"><a href="new_show.html"><p class="mui-ellipsis-2">我是新闻标题我是新闻标我是新闻标题我是新闻标</p><span>2016-07-27</span></a></li>
+					<li class="mui-table-view-cell"><a href="new_show.html"><p class="mui-ellipsis-2">我是新闻标题我是新闻标我是新闻标题我是新闻标</p><span>2016-07-27</span></a></li>
+					<li class="mui-table-view-cell"><a href="new_show.html"><p class="mui-ellipsis-2">我是新闻标题我是新闻标我是新闻标题我是新闻标</p><span>2016-07-27</span></a></li>
+					<li class="mui-table-view-cell"><a href="new_show.html"><p class="mui-ellipsis-2">我是新闻标题我是新闻标我是新闻标题我是新闻标</p><span>2016-07-27</span></a></li>
+					<li class="mui-table-view-cell"><a href="new_show.html"><p class="mui-ellipsis-2">我是新闻标题我是新闻标我是新闻标题我是新闻标</p><span>2016-07-27</span></a></li>
+					<li class="mui-table-view-cell"><a href="new_show.html"><p class="mui-ellipsis-2">我是新闻标题我是新闻标我是新闻标题我是新闻标</p><span>2016-07-27</span></a></li>
+					<li class="mui-table-view-cell"><a href="new_show.html"><p class="mui-ellipsis-2">我是新闻标题我是新闻标我是新闻标题我是新闻标</p><span>2016-07-27</span></a></li>
+					<li class="mui-table-view-cell"><a href="new_show.html"><p class="mui-ellipsis-2">我是新闻标题我是新闻标我是新闻标题我是新闻标</p><span>2016-07-27</span></a></li>
+					<li class="mui-table-view-cell"><a href="new_show.html"><p class="mui-ellipsis-2">我是新闻标题我是新闻标我是新闻标题我是新闻标</p><span>2016-07-27</span></a></li>
+					<li class="mui-table-view-cell"><a href="new_show.html"><p class="mui-ellipsis-2">我是新闻标题我是新闻标我是新闻标题我是新闻标</p><span>2016-07-27</span></a></li>
+				</ul>
+			</div>
+		</div>
+		
+		<script src="js/mui.min.js"></script>
+		<script>
+			mui.init({
+				pullRefresh: {
+					container: '#pullrefresh',
+					down: {
+						callback: pulldownRefresh
+					},
+					up: {
+						height:80,
+						//auto:true,
+						contentrefresh: '正在加载...',
+						callback: pullupRefresh
+					}
+				}
+			});
+			/**
+			 * 下拉刷新具体业务实现
+			 */
+			function pulldownRefresh() {
+				setTimeout(function() {
+					var table = document.body.querySelector('.mui-table-view');
+					var cells = document.body.querySelectorAll('.mui-table-view-cell');
+					for (var i = cells.length, len = i + 3; i < len; i++) {
+						var li = document.createElement('li');
+						li.className = 'mui-table-view-cell';
+						li.innerHTML = '<a href="new_show.html"><p class="mui-ellipsis-2">'+(i+1)+'我是新闻标题我是新闻标</p><span>2016-07-27</span></a>';
+						//下拉刷新，新纪录插到最前面；
+						table.insertBefore(li, table.firstChild);
+					}
+					mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); //refresh completed
+				}, 1500);
+			}
+			var count = 0;
+			/**
+			 * 上拉加载具体业务实现
+			 */
+			function pullupRefresh() {
+				setTimeout(function() {
+					mui('#pullrefresh').pullRefresh().endPullupToRefresh((++count > 2)); //参数为true代表没有更多数据了。
+					var table = document.body.querySelector('.mui-table-view');
+					var cells = document.body.querySelectorAll('.mui-table-view-cell');
+					for (var i = cells.length, len = i + 10; i < len; i++) {
+						var li = document.createElement('li');
+						li.className = 'mui-table-view-cell';
+						li.innerHTML = '<a href="new_show.html"><p class="mui-ellipsis-2">'+(i+1)+'我是新闻标题我是新闻标</p><span>2016-07-27</span></a>';
+						table.appendChild(li);
+					}
+				}, 1500);
+			}
+			//list跳转
+			mui('#pullrefresh .mui-table-view-cell').on('tap', 'a', function(e) {
+				
+				var url = this.getAttribute('href');        
+				mui.openWindow({
+					url:url
+				});
+			});
+		</script>
+	</body>
+
+</html>

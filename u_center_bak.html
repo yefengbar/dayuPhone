@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>dyPhone</title>
+		<link href="css/mui.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/index.css"/>
+		<style type="text/css">
+			.uc_pad {padding:50px}
+			.uc_photo {width:120px;height:120px;margin:0 auto;border-radius: 60px;overflow: hidden;position: relative;}
+			.uc_photo a,.uc_photo span {display: block;width: 100%;height: 25px;position: absolute;left: 0;bottom: 0;}
+			.uc_photo a {font-size: 14px;color:#333;line-height: 25px;text-align: center;font-weight: bold;z-index: 6;}
+			.uc_photo span {background: #fff;-webkit-opacity: 0.5;opacity: 0.5;z-index: 5;}
+			.ucenter ul {padding:80px 0 0 0}
+			.ucenter ul li {display: block;width:80%;height:50px;margin:0 auto;line-height: 50px;font-size: 20px;font-weight: bold;color:#333;text-align: center;}
+			.ucenter ul li a {color:#333}
+			.uc_name {font-size: 18px;line-height: 200%;text-align: center;color: #999;}
+			.photoClip {display:none;position: fixed;width: 100%;height:350px;top:50%;margin-top:-175px;z-index: 1000;}
+			#clipArea {height: 350px;}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<!--<a class="mui-action-menu mui-icon mui-pull-right txtIcon" href="u_reg.html">注册</a>-->
+			<a class="mui-action-back mui-icon mui-icon-back mui-pull-left"></a>
+			<h1 class="mui-title">用户中心</h1>
+		</header>
+		<div class="mui-content ucenter">
+			<div class="uc_pad">
+				<div class="uc_photo">
+					<img src="img/index/video_0.jpg" width="120" height="120"/>
+					<a href="#">修改头像</a>
+					<span></span>
+				</div>
+				<div class="uc_name">
+					weqrwer
+				</div>
+				<ul>
+					<li class="u_grzl"><a href="./u_info.html"><span class="mui-icon1 icon-warning"></span>&nbsp;&nbsp;个人资料</a></li>
+					<li class="u_yhbd"><a href="./u_bind.html"><span class="mui-icon1 icon-user"></span>&nbsp;&nbsp;用户绑定</a></li>
+					<li class="u_xgmm"><a href="./u_upass.html"><span class="mui-icon1 icon-link"></span>&nbsp;&nbsp;修改密码</a></li>
+				</ul>
+			</div>
+		</div>
+		<!--修改头像-->
+		<div id="sheet1" class="mui-popover mui-popover-bottom mui-popover-action ">
+		    <!-- 可选择菜单 -->
+		    <ul class="mui-table-view">
+		      <li class="mui-table-view-cell">
+		        <a href="#" rel="photo">手机相册</a>
+		        <input type="file" class="file" name="photo" id="photo" accept="image/*" value="" style="display:none" />
+		      </li>
+		      <li class="mui-table-view-cell">
+		        <a href="#" rel="camra">拍照</a>
+		        <input type="file" class="file" name="camra" id="camra" accept="image/*;capture=camera" value="" style="display:none" />
+		      </li>
+		    </ul>
+		    <!-- 取消菜单 -->
+		    <ul class="mui-table-view">
+		      <li class="mui-table-view-cell">
+		        <a href="#sheet1" style="color:#ef0000">取消</a>
+		      </li>
+		    </ul>
+		</div>
+		<div class="photoClip">
+			<div id="clipArea"></div>
+			<button id="clipBtn" class="mui-btn mui-btn-primary mui-btn-block">截取</button>
+		</div>
+		<div id="view" style="width: 120px;height: 120px;"></div>
+		<script src="http://libs.baidu.com/jquery/1.7.2/jquery.min.js"></script>
+		<!--<script src="js/mui.min.js"></script>-->
+		
+		<script src="js/iscroll-zoom.js"></script>
+		<script src="js/hammer.js"></script>
+		<script src="js/lrz.all.bundle.js"></script>
+		<script src="js/jquery.photoClip.js"></script>
+		<script>
+			mui.init();
+			//nav link
+			document.querySelector('.uc_photo a').addEventListener('tap', function(){
+				mui('#sheet1').popover('toggle');
+			});
+			var maskp = mui.createMask(cl_photo);
+			mui('.mui-popover .mui-table-view-cell').on('tap','a',function(){
+				var type = this.getAttribute('rel');
+				document.querySelector('#'+type).click();
+				mui('#sheet1').popover('toggle');
+				maskp.show();
+				document.querySelector('.photoClip').style.display = 'block';
+			});
+			function cl_photo(){
+				document.querySelector('.photoClip').style.display = 'none';
+			}
+			//photoClip
+			var clipArea = new bjj.PhotoClip("#clipArea", {
+			    size: [120, 120], // 截取框的宽和高组成的数组。默认值为[260,260]
+			    outputSize: [120, 120], // 输出图像的宽和高组成的数组。默认值为[0,0]，表示输出图像原始大小
+			    outputType: "jpg", // 指定输出图片的类型，可选 "jpg" 和 "png" 两种种类型，默认为 "jpg"
+			    file: ".file", // 上传图片的<input type="file">控件的选择器或者DOM对象
+			    source: "", // 需要裁剪图片的url地址。该参数表示当前立即开始裁剪的图片，不需要使用file控件获取。注意，该参数不支持跨域图片。
+			    view: "#view", // 显示截取后图像的容器的选择器或者DOM对象
+			    ok: "#clipBtn", // 确认截图按钮的选择器或者DOM对象
+			    loadStart: function(file) {
+			    	//console.log(file);
+			    }, // 开始加载的回调函数。this指向 fileReader 对象，并将正在加载的 file 对象作为参数传入
+			    loadComplete: function(src) {
+			    	//console.log(src);
+			    }, // 加载完成的回调函数。this指向图片对象，并将图片地址作为参数传入
+			    loadError: function(event) {
+			    	//console.log(event);
+			    }, // 加载失败的回调函数。this指向 fileReader 对象，并将错误事件的 event 对象作为参数传入
+			    clipFinish: function(dataURL) {
+			    	//$('.uc_photo img').attr('src',dataURL)
+			    	//console.log(dataURL);
+			    }, // 裁剪完成的回调函数。this指向图片对象，会将裁剪出的图像数据DataURL作为参数传入
+			});
+		</script>
+	</body>
+
+</html>

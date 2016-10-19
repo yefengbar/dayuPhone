@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>dyPhone</title>
+		<link href="css/mui.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/index.css"/>
+		<style type="text/css">
+			.pro_list #sec_h3 {float:left;border-radius:5px;margin:0 0 15px 15px;background: #0062CC;color:#fff;padding:10px;line-height: 100%;font-size: 16px;font-weight: bold;}
+			.pro_list #second_list {display: none;}
+			.pro_list #sec_h3 span {margin:2px 0 0 20px;font-size: 16px;}
+			.pro_list #second_list.on {
+			    display: block;
+			    width: 176px;
+			    background: #0062CC;
+			    position: absolute;
+			    left: 15px;
+			    top: 100px;
+			    border-radius: 0 0 5px 5px;
+			    padding: 5px 10px 5px 10px;
+			    z-index: 10;
+			}
+			.pro_list #second_list.on.topCla {
+				display: block;
+			    width: 100%;
+			    background: #fff;
+			    position: fixed;
+			    left: 0px;
+			    top: 43px;
+			    border-radius: 0;
+			    padding: 5px 20px 5px 20px;
+			    z-index: 10;
+			}
+			.pro_list #second_list li {color:#fff;font-size: 16px;font-weight: bold;line-height: 30px;}
+			.pro_list #second_list.topCla li {color:#999;font-size: 16px;font-weight: bold;line-height: 30px;text-align: center;}
+			.pro_list .pro_lists {padding:10px 15px}
+			.pro_list .pro_lists .pro_info {padding: 10px 10px 0 10px;font-size: 12px;color:#999}
+			.pro_list .pro_lists .pro_info .video_tit {font-size: 16px;color:#333;text-align: center;font-weight: bold;}
+			.pro_list .pro_lists .pro_info p {font-size: 14px;color:#999;text-indent: 2em;}
+			.pro_list .pro_lists .pro_info a {float: right;margin-right:10px}
+			.pro_list .pro_lists li {margin-bottom:10px;background: #f5f5f5;}
+			.pro_list .pro_lists li img {display: block;}
+			.pro_list .pro_lists .pro_info_l {width: 40%;float: left;}
+			.pro_list .pro_lists .pro_info_r {width: 60%;float: right;}
+			.nolink .pro_info_l {position: relative;}
+			.nolink .pro_info_l span {position:absolute;left:0;bottom:0;display: block;width: 100%;height: 30px;font-size: 14px;color:#fff;text-align: center;line-height: 30px;z-index: 3;background: none;}
+			.nolink .pro_info_l i {position:absolute;left:0;bottom:0;display: block;width: 100%;height: 30px;background:#000;-webkit-opacity: 0.5;opacity: 0.5;z-index: 2;}
+			.mui-backdrop {z-index: 8;}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" id="headers">
+			<a id="icon-menu" class="mui-action-menu mui-icon mui-icon-bars mui-pull-left"></a>
+			<a class="mui-action-back mui-icon mui-pull-right logo"></a>
+			<h1 class="mui-title">仙剑奇侠传</h1>
+		</header>
+		<div class="mui-content pro_list">
+			<!--这里放置真实显示的DOM内容-->
+			<br>
+			<div class="body-tit" id="sec_h3"><b>仙剑奇侠传-单机</b><span class="icon-tree-arrow-open mui-icon1"></span></div>
+			<ul id="second_list">
+				<li>单机</li>
+				<li>手游</li>
+				<li>端游、页游</li>
+				<li>仙剑客栈</li>
+				<li>影视</li>
+				<li>动漫</li>
+				<li>其他</li>
+			</ul>
+			<div style="clear:both"></div>
+			<ul class="mui-grid-view pro_lists">
+				<li class="mui-media mui-col-xs-12">
+								<div class="pro_info_l"><img class="mui-media-object" width="100%" height="200" src="./img/index/video_0.jpg"></div>
+								<div class="pro_info_r">
+									<div class="pro_info">
+										<div class="video_tit mui-ellipsis">大宇回归台北国际电玩展</div>
+										<p class="mui-ellipsis-3">大宇回归台北国际电玩展大宇归台北国际电玩展大宇回归台北国际电玩展大宇回归台北国际电玩展大宇回归台北国际电玩展大宇回归台北国际电玩展</p>
+										<br>
+										<div class="fxgs mui-ellipsis">
+											发行公司：北京畅游网络技术有限公司
+										</div>
+										<div class="fxsj mui-ellipsis">
+											发行时间：2015年3月23日
+										</div>
+										<a href="">外链</a>
+									</div>
+								</div>
+								<div style="clear:both"></div>
+				</li>
+				<li class="mui-media mui-col-xs-12 nolink">
+					<a href="pro_show.html">
+								<div class="pro_info_l"><img class="mui-media-object" width="100%" height="200" src="./img/index/video_0.jpg"><span>查看详情</span><i></i></div>
+								<div class="pro_info_r">
+									<div class="pro_info">
+										<div class="video_tit mui-ellipsis">大宇回归台北国际电玩展大宇回归台北国际电玩展</div>
+										<p class="mui-ellipsis-3">大宇回归台北国际电玩展大宇归台北国际电玩展大宇回归台北国际电玩展大宇回归台北国际电玩展大宇回归台北国际电玩展大宇回归台北国际电玩展</p>
+										<br>
+										<br>
+										<div class="fxgs mui-ellipsis">
+											发行公司：北京畅游网络技术有限公司
+										</div>
+										<div class="fxsj mui-ellipsis">
+											发行时间：2015年3月23日
+										</div>
+									</div>
+								</div>
+								<div style="clear:both"></div>
+								</a>
+				</li>
+			</ul>
+			
+				<div class="footer">
+					<ul class="mui-table-view">
+						<li class="mui-table-view-cell">
+							<a class="mui-navigate-right">
+								首页
+							</a>
+						</li>
+						<li class="mui-table-view-cell">
+							<a href="list.html" class="mui-navigate-right">
+								公司简介
+							</a>
+						</li>
+						<li class="mui-table-view-cell">
+							<a class="mui-navigate-right">
+								团队文化
+							</a>
+						</li>
+						<li class="mui-table-view-cell">
+							<a class="mui-navigate-right">
+								联系我们 
+							</a>
+						</li>
+						<li class="mui-table-view-cell">
+							<a class="mui-navigate-right">
+								招聘信息 
+							</a>
+						</li>
+						<li class="mui-table-view-cell">
+							<a class="mui-navigate-right" href="palsh.html">后援会地图</a>
+						</li>
+						<li class="mui-table-view-cell mui-collapse plus">
+							<a class="mui-navigate-right">友情链接</a>
+							<div class="mui-collapse-content">
+				                <ul class="links">
+				                	<li><a href="">友情链接</a></li>
+				                	<li><a href="">友情链接</a></li>
+				                	<li><a href="">友情链接</a></li>
+				                	<li><a href="">友情链接</a></li>
+				                	<li><a href="">友情链接</a></li>
+				                	<li><a href="">友情链接</a></li>
+				                	<li><a href="">友情链接</a></li>
+				                	<li><a href="">友情链接</a></li>
+				                	<li><a href="">友情链接</a></li>
+				                </ul>
+				            </div>
+						</li>
+						<li class="mui-table-view-cell mui-collapse plus">
+							<a class="mui-navigate-right">二维码</a>
+							<div class="mui-collapse-content">
+				                <table border="0" cellspacing="0" cellpadding="20" width="100%">
+				                	<tr>
+				                		<td align="center"><img src="http://dy.6vi.com/Public/static/root/img/guanw.jpg" width="113" height="113"><br><span>官方微信二维码</span></td>
+				                		<td align="center"><img src="http://dy.6vi.com/Public/static/root/img/guanb.jpg" width="113" height="113"><br><span>官方微博二维码</span></td>
+				                	</tr>
+				                </table>
+				            </div>
+						</li>
+					</ul>
+					<div class="fooRight">
+						<p>2000-2016 SOFTSTAR TECHNOLOGY (BEIJING) CO.LTD<br>ALL BRAND NAMES AND PICTURES ARE REGISTERED TRADE<br>MARKS OF THEIR RESPECTIVE OWNERS<br>京公网安备110108007770</p>
+					</div>
+				</div>
+		</div>
+		<div id="menu-wrapper" class="menu-wrapper fade-in-down animated hidden">
+			<div id="menu" class="menu bounce-in-down animated">
+				<ul class="mui-table-view mui-table-view-inverted">
+					<li class="mui-table-view-cell">
+						<a href="index.html" class="mui-navigate-right">首页</a>
+					</li>
+<li class="mui-table-view-cell">
+						<a href="pro_list.html" class="mui-navigate-right">仙剑奇侠传</a>
+					</li>
+<li class="mui-table-view-cell">
+						<a href="javascript:;" class="mui-navigate-right">轩辕剑</a>
+					</li>
+<li class="mui-table-view-cell">
+						<a href="javascript:;" class="mui-navigate-right">大富翁</a>
+					</li>
+<li class="mui-table-view-cell">
+						<a href="javascript:;" class="mui-navigate-right">明星志愿</a>
+					</li>
+<li class="mui-table-view-cell">
+						<a href="javascript:;" class="mui-navigate-right">天使帝国</a>
+					</li>
+<li class="mui-table-view-cell">
+						<a href="javascript:;" class="mui-navigate-right">阿猫阿狗</a>
+					</li>
+<li class="mui-table-view-cell">
+						<a href="javascript:;" class="mui-navigate-right">NEW</a>
+					</li>
+<li class="mui-table-view-cell">
+						<a href="javascript:;" class="mui-navigate-right">其他</a>
+					</li>
+<li class="mui-table-view-cell">
+						<a href="javascript:;" class="mui-navigate-right">登录</a>
+					</li>
+<li class="mui-table-view-cell">
+						<a href="javascript:;" class="mui-navigate-right">注册</a>
+					</li>
+					
+				</ul>
+			</div>
+		</div>
+		<div id="menu-backdrop" class="menu-backdrop"></div>
+		<script src="js/mui.min.js"></script>
+		<script>
+			mui.init();
+			//nav
+			var menuWrapper = document.getElementById("menu-wrapper");
+			var menu = document.getElementById("menu");
+			var menuWrapperClassList = menuWrapper.classList;
+			var backdrop = document.getElementById("menu-backdrop");
+			var info = document.getElementById("info");
+			var heads = document.getElementById("headers");
+			
+			backdrop.addEventListener('tap', toggleMenu);
+			document.getElementById("icon-menu").addEventListener('tap',toggleMenu)
+			
+			var busying = false;
+			var mask = mui.createMask(toggleMenu);
+			function toggleMenu() {
+				if (busying) {
+					return;
+				}
+				busying = true;
+				if (menuWrapperClassList.contains('mui-active')) {
+					document.body.classList.remove('menu-open');
+					menuWrapper.className = 'menu-wrapper fade-out-up animated';
+					menu.className = 'menu bounce-out-up animated';
+					setTimeout(function() {
+						backdrop.style.opacity = 0;
+						menuWrapper.classList.add('hidden');
+						mask.close();
+					}, 500);
+				} else {
+					document.body.classList.add('menu-open');
+					menuWrapper.className = 'menu-wrapper fade-in-down animated mui-active';
+					menu.className = 'menu bounce-in-down animated';
+					backdrop.style.opacity = 1;
+					mask.show();
+				}
+				setTimeout(function() {
+					busying = false;
+				}, 500);
+			}
+			//主菜单跳转
+			mui('#menu-wrapper .mui-table-view-cell').on('tap', 'a', function(e) {
+				toggleMenu();
+				var url = this.getAttribute('href');        
+				mui.openWindow({
+					url:url
+				});
+			});
+			//子分类菜单
+			var _list = document.getElementById("second_list"),_list1 = document.getElementById("sec_h3");
+			
+			var mask1 = mui.createMask(toggleMenu1);
+			mui('#sec_h3').on('tap','span',function(){
+				var wid = document.querySelector('#sec_h3').offsetWidth,_lists = _list.classList,_lists1 = _list1.classList;
+				if (_lists.contains('on')){
+					if (_lists.contains('topCla')){
+						_list.className = 'topCla';
+						mask1.close()
+					}else{
+						_list.className = ''
+					}
+				}else{
+					if (_lists.contains('topCla')){
+						mask1.show();
+						_list.className = 'on topCla';
+						document.querySelector('#second_list').style.width = '100%';
+					}else{
+						_list.className = 'on';
+						document.querySelector('#second_list').style.width = wid+'px';
+					}
+				}
+			});
+			function toggleMenu1(){
+				var _lists = _list1.classList;
+				if (_lists.contains('topCla')){
+					_list.className = 'topCla';
+				}
+			}
+			//子分类菜单
+			mui('#second_list').on('tap','li',function(){
+				var name = '仙剑奇侠传-'+this.innerText;
+				_list.className = '';
+				document.querySelector('#sec_h3 b').innerHTML = name;
+				mask1.close()
+				//处理分类数据逻辑
+				
+			});
+			//滑动处理
+			var heads = document.getElementById("headers");
+			var _btns = document.getElementById("sec_h3");
+			var _sec = document.getElementById("second_list");
+			window.addEventListener("dragend",function(e){
+			    var dir = e.detail.offsetDirection,topY = document.body.scrollTop;
+				if(e.detail.angle < 0){
+					hideTop()
+				}else{
+					showTop()
+				}
+				function hideTop(){
+					if(topY > 60){
+						setTimeout(function(){
+							heads.className = 'mui-bar mui-bar-nav topHide';
+						},300);
+						setTimeout(function(){
+							_btns.className = 'topCla';
+							_sec.className = 'topCla';
+						},800);
+					}
+				}
+				function showTop(){
+					heads.className = 'mui-bar mui-bar-nav';
+					_btns.className = '';
+					_sec.className = '';
+				}
+			});
+		</script>
+	</body>
+
+</html>
