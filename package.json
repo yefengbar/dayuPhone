@@ -1,7 +1,7 @@
 {
-  "name": "loginplus",
+  "name": "dayuPhone",
   "version": "1.0.0",
-  "description": "this my first project for auto",
+  "description": "this is dayuPhone project for phone",
   "main": "gulpfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
